@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:p="http://primefaces.org/ui" >
+	<h:head>
+		<h:outputScript library="default" name="js/contador.js" />
+		<h:outputStylesheet library="default" name="css/default.css" />
+	</h:head>
+	<h:body>
+		<h:graphicImage library="default" name="imagens/IFCE_homeHeaderTitleImage_pt_BR.jpg" />
+		<div width="80%">
+			<h:form>
+				<h2>Sistema de alguma coisa</h2>
+				<fieldset>
+					<legend><p>Informe os dados</p></legend>
+					<p:panelGrid columns="2">
+						<h:outputLabel for="nome" value="Nome: " />
+						<p:inputText id="nome" value="#{visitanteBean.nome}" />
+						
+						<h:outputLabel for="telefone" value="Telefone: " />
+						<p:inputText id="telefone" value="#{visitanteBean.telefone}" />					
+					</p:panelGrid>
+				</fieldset>
+				<div>
+				<h:outputText id="msg" value="#{visitanteBean.mensagem}" />
+				</div>
+				<p:panelGrid columns="2" >
+						<p:commandButton value="Enviar" action="#{visitanteBean.enviarMsg()}" update="msg" />
+						<input type="button" value="Imprimir" onclick="imprimir();" />				
+				</p:panelGrid>
+			</h:form>
+		</div>
+	</h:body>
+</html>

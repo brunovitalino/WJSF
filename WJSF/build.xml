@@ -32,30 +32,8 @@
 			<include name="primefaces-5.3.jar"/>
 		</fileset>
 	</path>
-	<!-- Configura Catalina-Ant JARs -->
-	<!-- Nota: Ate o tomcat6, era apenas 1 JAR, agora sao 4 JARs -->
-	<path id="lib.ant">
-		<fileset dir="${lib}">
-			<include name="catalina-ant.jar"/>
-			<include name="tomcat-coyote.jar"/>
-			<include name="tomcat-util.jar"/>
-			<include name="tomcat-juli.jar"/>
-		</fileset>
-	</path>
-	<!-- Targets/Tasks Customizadas -->
-	<taskdef name="catalina-start"		classname="org.apache.catalina.ant.StartTask"		classpathref="lib.ant"/>
-	<taskdef name="catalina-stop"		classname="org.apache.catalina.ant.StopTask"		classpathref="lib.ant"/>
-	<taskdef name="catalina-undeploy"	classname="org.apache.catalina.ant.UndeployTask"	classpathref="lib.ant"/>
-	<taskdef name="catalina-deploy"		classname="org.apache.catalina.ant.DeployTask"		classpathref="lib.ant"/>
-	<taskdef name="catalina-reload"		classname="org.apache.catalina.ant.ReloadTask"		classpathref="lib.ant"/>
-	<taskdef name="catalina-list"		classname="org.apache.catalina.ant.ListTask"		classpathref="lib.ant"/>
-	<taskdef name="catalina-findleaks"	classname="org.apache.catalina.ant.FindLeaksTask"	classpathref="lib.ant"/>
-	<taskdef name="catalina-resources"	classname="org.apache.catalina.ant.ResourcesTask"	classpathref="lib.ant"/>
-	<!-- OUTRA FORMA
-		Poupar tempo utilizando o catalina-tasks.xml. Ele esta configurado para importar todos os JARs do tomcat,
-		onde 4 deles estarao as tasks que precisamos (start, stop, undeploy, deploy, etc)
+	<!-- Configura Tomcat JARs -->
 	<import file="${catalina.home}/bin/catalina-tasks.xml"/>
-	-->
 	
 	<!-- Targets Executaveis -->
 	<target name="compilar-webapp" depends="" description="Compile web application">
@@ -85,7 +63,7 @@
 
 	<!-- Adiciona a nossa aplicacao ao Tomcat -->
 	<target name = "deploy-webapp" depends="gerarWar-webapp, undeploy-webapp">
-		<catalina-deploy	url="${tomcat.manager.url}"
+		<deploy				url="${tomcat.manager.url}"
 	    					username="${tomcat.manager.usuario}"
 	    					password="${tomcat.manager.senha}"
 	    					path="/${contexto-nome}"
@@ -103,7 +81,7 @@
 		apenas um dos dois como true pra evitar trabalho dobrado pelo tomcat.
 	-->
 	<target name = "undeploy-webapp">
-		<catalina-undeploy	url="${tomcat.manager.url}"
+		<undeploy			url="${tomcat.manager.url}"
 	    					username="${tomcat.manager.usuario}"
 	    					password="${tomcat.manager.senha}"
 	    					path="/${contexto-nome}"
@@ -113,7 +91,7 @@
 
 	<!-- Inicia a nossa aplicacao no Tomcat -->
 	<target name = "start-webapp">
-		<catalina-start		url="${tomcat.manager.url}"
+		<start				url="${tomcat.manager.url}"
 	    					username="${tomcat.manager.usuario}"
 							password="${tomcat.manager.senha}"
 	    					path="/${contexto-nome}"
@@ -122,7 +100,7 @@
 	
 	<!-- Paraliza a nossa aplicacao no Tomcat -->
 	<target name = "stop-webapp">
-		<catalina-stop		url="${tomcat.manager.url}"
+		<stop				url="${tomcat.manager.url}"
 							username="${tomcat.manager.usuario}"
 	       					password="${tomcat.manager.senha}"
 	       					path="/${contexto-nome}"
@@ -132,7 +110,7 @@
 
 	<!-- Recarrega a nossa aplicacao no Tomcat -->
 	<target name="reload-webapp" description="Reload web application">
-		<catalina-reload	url="${tomcat.manager.url}"
+		<reload				url="${tomcat.manager.url}"
 							username="${tomcat.manager.usuario}"
 							password="${tomcat.manager.senha}"
 							path="/${contexto-nome}"

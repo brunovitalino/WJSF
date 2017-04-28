@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:p="http://primefaces.org/ui" >
+	<h:head>
+		<title>Aplicativo em JSF</title>
+		<h:outputScript library="resources/js" name="contador.js" />
+	</h:head>
+	<h:body>
+		<h:outputText value="Olaaa JSF, tudo bem?!" />
+		<div>
+			<h:form>
+				<p:panelGrid columns="2">			
+					<h:outputLabel for="idnome" value="Nome " />
+					<p:inputText id="idnome" value="#{visitanteBean.nome}" />
+					
+					<h:outputLabel for="idtelefone" value="Telefone " />
+					<p:inputText id="idtelefone" value="#{visitanteBean.telefone}" />
+					
+					<h:outputText />
+					<p:commandButton value="OK" action="#{visitanteBean.ola}" />
+					
+					<h:outputText id="idmsg" value="#{visitanteBean.mensagem}" />
+				</p:panelGrid>
+			</h:form>
+		</div>
+	</h:body>
+</html>

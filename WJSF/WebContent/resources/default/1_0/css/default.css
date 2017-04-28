@@ -1,0 +1,11 @@
+body {
+	background-color: #E6E6FA;
+}
+h1, h2 {
+	text-align: center;
+	background-color: #BDB76B;
+}
+p {
+	font-style: italic;
+	font-size: 20px;
+}
